@@ -4,9 +4,10 @@
  */
 
 // Determine the API base URL
-// Priority: Environment variable > Production detection > Localhost
+// Priority: Environment variable > Hardcoded production URL > Localhost
 function getApiBaseUrl() {
     // Check for Vite environment variable (Vercel/other platforms)
+    // Note: For Vercel static sites, env vars need to be available at build time
     if (import.meta.env?.VITE_API_URL) {
         return import.meta.env.VITE_API_URL;
     }
@@ -21,7 +22,7 @@ function getApiBaseUrl() {
         return window.env.VITE_API_URL;
     }
     
-    // Production detection: if not localhost, use relative URL or default
+    // Production detection: if not localhost, use hardcoded backend URL
     if (typeof window !== 'undefined') {
         const hostname = window.location.hostname;
         
@@ -30,17 +31,14 @@ function getApiBaseUrl() {
             return 'http://localhost:8080';
         }
         
-        // Production: Use environment variable or default placeholder
-        // Set VITE_API_URL environment variable in Vercel dashboard
-        // If not set, this will cause an error - which is intentional
-        // to remind you to set the environment variable
-        const defaultProdUrl = 'https://your-backend-url.com';
+        // Production: Use hardcoded Railway backend URL
+        // This will work even if environment variable is not set
+        // But ideally, set VITE_API_URL in Vercel for flexibility
+        const productionBackendUrl = 'https://maze-solver-webapp-production.up.railway.app';
         
-        // Log warning if using placeholder
-        console.warn('⚠️ Using placeholder backend URL. Set VITE_API_URL environment variable!');
-        console.warn('Current URL:', defaultProdUrl);
+        console.log('🌐 Using production backend URL:', productionBackendUrl);
         
-        return defaultProdUrl;
+        return productionBackendUrl;
     }
     
     // Fallback
@@ -51,8 +49,15 @@ export const API_CONFIG = {
     BASE_URL: getApiBaseUrl()
 };
 
-// Log for debugging (only in development)
-if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-    console.log('API Base URL:', API_CONFIG.BASE_URL);
+// Log for debugging (always log in production to help debug)
+if (typeof window !== 'undefined') {
+    console.log('🌐 API Base URL:', API_CONFIG.BASE_URL);
+    console.log('📍 Current Hostname:', window.location.hostname);
+    
+    // Check if using placeholder
+    if (API_CONFIG.BASE_URL === 'https://your-backend-url.com') {
+        console.error('❌ ERROR: Backend URL not configured!');
+        console.error('Please set VITE_API_URL environment variable in Vercel');
+    }
 }
 
