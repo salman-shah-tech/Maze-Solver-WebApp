@@ -14,7 +14,10 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/maze")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+    "http://localhost:8000",
+    "https://maze-solver-web-app.vercel.app"
+})
 public class MazeController {
 
     @Autowired
