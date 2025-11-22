@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Solver - Interactive Pathfinding</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧩 Maze Solver</h1>
+            <p class="subtitle">Generate and solve mazes with BFS visualization</p>
+        </header>
+
+        <div class="main-content">
+            <div class="controls-panel">
+                <div class="control-group">
+                    <label for="gridSize">Maze Size:</label>
+                    <input type="range" id="gridSize" min="10" max="50" value="25" step="5">
+                    <span id="gridSizeValue">25x25</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="animationSpeed">Animation Speed:</label>
+                    <input type="range" id="animationSpeed" min="1" max="10" value="5" step="1">
+                    <span id="animationSpeedValue">5</span>
+                </div>
+
+                <div class="button-group">
+                    <button id="generateBtn" class="btn btn-primary">Generate Maze</button>
+                    <button id="solveBtn" class="btn btn-success" disabled>Solve Maze</button>
+                    <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-item">
+                        <span class="info-label">Backend:</span>
+                        <span id="backendStatus" class="backend-status">Checking...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status:</span>
+                        <span id="statusText">Ready</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Path Length:</span>
+                        <span id="pathLength">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="mazeCanvas"></canvas>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color wall"></div>
+                        <span>Wall</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color path"></div>
+                        <span>Path</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color visited"></div>
+                        <span>Visited</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color solution"></div>
+                        <span>Solution</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color start"></div>
+                        <span>Start</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color end"></div>
+                        <span>End</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
+

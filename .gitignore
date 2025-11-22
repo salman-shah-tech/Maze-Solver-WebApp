@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+target/
+*.jar
+*.war
+*.ear
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build outputs
+dist/
+build/
+out/
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Spring Boot
+application-local.properties
+
+# Temporary files
+*.tmp
+*.temp
+
