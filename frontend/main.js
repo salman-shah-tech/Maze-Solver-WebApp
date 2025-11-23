@@ -8,12 +8,12 @@ import { apiService } from './js/apiService.js';
 import { MazeRenderer } from './js/renderer.js';
 import { initializeControls } from './components/controls.js';
 import { 
-    //updateStatus, 
+    updateStatus, 
     updatePathLength, 
     setSolveButtonEnabled,
     setGenerateButtonEnabled,
     updateBackendStatus,
-    //setBackendStatusChecking
+    setBackendStatusChecking
 } from './components/ui.js';
 import { sleep } from './js/utils.js';
 
