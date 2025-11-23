@@ -139,7 +139,7 @@ class MazeSolverApp {
             if (result.solution && result.solution.length > 0) {
                 this.renderer.setSolutionPath(result.solution);
                 updatePathLength(result.pathLength);
-                updateStatus(`✅ Path found! Length: ${result.pathLength} cells`);
+                updateStatus(`✅ Path found!`);
             } else {
                 updateStatus('❌ No path found');
                 updatePathLength(0);
